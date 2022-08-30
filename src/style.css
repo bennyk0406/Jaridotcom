@@ -1,132 +1,132 @@
 :root[color-theme="light"] {
-	--background: rgba(245, 245, 245);
-	--header-background: rgba(231, 234, 235);
-	--text: black;
-	--border: black;
+    --background: rgba(245, 245, 245);
+    --header-background: rgba(231, 234, 235);
+    --text: black;
+    --border: black;
 }
 
 :root[color-theme="dark"] {
-	--background: rgba(45, 45, 50);
-	--header-background: rgba(55, 55, 55);
-	--border: black;
-	--text: white;
+    --background: rgba(45, 45, 50);
+    --header-background: rgba(55, 55, 55);
+    --border: black;
+    --text: white;
 }
 
 body {
-	font-family: "Noto Sans KR", sans-serif;
-	margin: 0;
-	-ms-user-select: none; 
-	-moz-user-select: -moz-none;
-	-khtml-user-select: none;
-	-webkit-user-select: none;
-	user-select: none;
-	overflow: hidden;
+    font-family: "Noto Sans KR", sans-serif;
+    margin: 0;
+    -ms-user-select: none;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    overflow: hidden;
 }
 
 #root {
-	display: flex;
-	flex-direction: column;
-	width: 100vw;
-	height: 100vh;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
 }
 
-#root > header {
-	height: 50px;
-	width: 100%;
-	background-color: var(--background);
-	border-bottom: 1px var(--border) solid;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+#root>header {
+    height: 50px;
+    width: 100%;
+    background-color: var(--background);
+    border-bottom: 1px var(--border) solid;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 #logo-container {
-	display: flex;
-	align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 #svg-container {
-	width: 50px;
-	height: 50px;
-	margin-right: 3px;
+    width: 50px;
+    height: 50px;
+    margin-right: 3px;
 }
 
 #view-mode-svg {
-	width: 100%;
-	height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 #header-img {
-	padding-left: 5px;
-	height: 26px;
-	cursor: pointer;
+    padding-left: 5px;
+    height: 26px;
+    cursor: pointer;
 }
 
 #view-mode-svg {
-	width: 100%;
-	height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 #header-img {
-	padding-left: 5px;
-	height: 26px;
-	cursor: pointer;
+    padding-left: 5px;
+    height: 26px;
+    cursor: pointer;
 }
 
 main {
-	text-align: center;
-	background-color: var(--background);
-	margin: 0;
-	width: 100%;
-	height: 100%;
-	display: flex;
-	padding-top: 10px;
-	color: var(--text);
-	flex-direction: column;
-	gap: 20px;
+    text-align: center;
+    background-color: var(--background);
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding-top: 10px;
+    color: var(--text);
+    flex-direction: column;
+    gap: 20px;
 }
 
 img#logo-img {
-	margin-top: 40px;
-	width: 200px;
+    margin-top: 40px;
+    width: 200px;
 }
 
 img#card {
-	width: 100%;
-	margin: 0;
-	padding: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 img#prob {
-	width: 100%;
-	margin: 0;
-	padding: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 button {
-	height: 150px;
-	width: 150px;
-	background-color: var(--background);
-	border: 2px var(--border) solid;
-	display: block;
-	border-radius: 15px;
-	margin: 30px auto 0 auto;
-	box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
-	cursor: pointer;
-	color: var(--text);
+    height: 150px;
+    width: 150px;
+    background-color: var(--background);
+    border: 2px var(--border) solid;
+    display: block;
+    border-radius: 15px;
+    margin: 30px auto 0 auto;
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    color: var(--text);
 }
 
 p.button-description {
-	color: var(--text);
-	font-size: 20px;
-	margin: 10px auto 0px;
+    color: var(--text);
+    font-size: 20px;
+    margin: 10px auto 0px;
 }
 
 p#subtitle {
-	margin: 0;
+    margin: 0;
 }
 
 span {
-	font-size: 26px;
-	padding-right: 5px;
+    font-size: 26px;
+    padding-right: 5px;
 }

@@ -1,1 +1,1 @@
-export { default } from "./2022/5_summer";
+export { default } from "./2022/6_chuseok";

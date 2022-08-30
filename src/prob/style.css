@@ -1,136 +1,177 @@
 :root[color-theme="light"] {
-	--background: rgba(245, 245, 245);
-	--header-background: rgba(231, 234, 235);
-	--text: black;
-	--border: black;
+    --background: rgba(245, 245, 245);
+    --header-background: rgba(231, 234, 235);
+    --text: black;
+    --border: black;
 }
 
 :root[color-theme="dark"] {
-	--background: rgba(45, 45, 50);
-	--header-background: rgba(55, 55, 55);
-	--border: black;
-	--text: white;
+    --background: rgba(45, 45, 50);
+    --header-background: rgba(55, 55, 55);
+    --border: black;
+    --text: white;
 }
 
 body {
-	font-family: "Noto Sans KR", sans-serif;
-	margin: 0;
-	-ms-user-select: none; 
-	-moz-user-select: -moz-none;
-	-khtml-user-select: none;
-	-webkit-user-select: none;
-	user-select: none;
+    font-family: "Noto Sans KR", sans-serif;
+    margin: 0;
+    -ms-user-select: none;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 #root {
-	display: flex;
-	flex-direction: column;
-	width: 100vw;
-	height: 100vh;
-	height: calc(var(--vh, 1vh) * 100);
-	overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    overflow-x: hidden;
 }
 
-#root > header {
-	height: 50px;
-	width: 100%;
-	background-color: var(--background);
-	border-bottom: 1px var(--border) solid;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+#root>header {
+    height: 50px;
+    width: 100%;
+    background-color: var(--background);
+    border-bottom: 1px var(--border) solid;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 #logo-container {
-	display: flex;
-	align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 #svg-container {
-	width: 50px;
-	height: 50px;
-	margin-right: 3px;
+    width: 50px;
+    height: 50px;
+    margin-right: 3px;
 }
 
 #view-mode-svg {
-	width: 100%;
-	height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 #header-img {
-	padding-left: 5px;
-	height: 26px;
-	cursor: pointer;
+    padding-left: 5px;
+    height: 26px;
+    cursor: pointer;
 }
 
 main {
-	flex-grow: 1;
-	padding: 5px 10px 80px 10px;
-	color: var(--text);
-	background-color: var(--background);
-	overflow-y: scroll;
-	font-size: 18px;
+    flex-grow: 1;
+    padding: 5px 10px 80px 10px;
+    color: var(--text);
+    background-color: var(--background);
+    overflow-y: scroll;
+    font-size: 18px;
 }
 
 .item-table {
-	width: 90vw;
-	max-width: 500px;
-	table-layout: fixed;
-	margin: 0 auto;
-	border-collapse: collapse;
-	margin-top: 40px;
+    width: 90vw;
+    max-width: 500px;
+    table-layout: fixed;
+    margin: 0 auto;
+    border-collapse: collapse;
+    margin-top: 40px;
 }
+
 #item-table-header {
-	border-bottom: 1px solid var(--text);
+    border-bottom: 1px solid var(--text);
 }
+
 td {
-	padding: 0px 1rem;
-	text-align: center;
+    padding: 0px 1rem;
+    text-align: center;
 }
+
 .has-item {
-	text-align: center;
+    text-align: center;
 }
+
 #checkbox-raw {
-	width: 20%;
+    width: 20%;
 }
+
 #name-raw {
-	width: 55%;
+    width: 55%;
 }
+
 #probability-raw {
-	width: 25%;
+    width: 25%;
 }
 
 /* footer */
 footer {
-	vertical-align: middle;
-	width: 100%;
-	padding: 1rem 0px;
-	color: var(--text);
-	background: var(--header-background);
-	text-align: center;
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	font-weight: bold;
+    vertical-align: middle;
+    width: 100%;
+    padding: 1rem 0px;
+    color: var(--text);
+    background: var(--header-background);
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-weight: bold;
 }
 
 #gashapon-button {
-	position: fixed;
-	right: 3px;
-	bottom: 0;
-	background-color: transparent;
-	border: 0;
-	outline: 0;
-	width: 90px;
-	cursor: pointer;
+    position: fixed;
+    right: 3px;
+    bottom: 0;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    width: 90px;
+    cursor: pointer;
 }
 
 .gashapon-img {
-	width: 100%;
+    width: 100%;
 }
 
 p {
-	margin-top: 0;
-	margin-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* CHUSEOK */
+#songpyeon-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px 0;
+    width: 180px;
+    margin: 10px auto;
+}
+
+input[type="number"] {
+    width: 50px;
+    background-color: transparent;
+    color: var(--text);
+    border: 1px solid var(--text);
+    box-shadow: none;
+    margin: 0 4px 0 0;
+    font-size: 15px;
+    text-align: right;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.amount {
+    display: inline-block;
+}
+
+label {
+    display: flex;
+    justify-content: space-between;
 }
