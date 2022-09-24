@@ -17,12 +17,23 @@ const App = () => {
         localStorage.setItem("color-theme", theme);
     }, [ theme ]);
 
+    /* 1st anniversary */
+    const [ clickCount, setClickCount ] = useState(0);
+    const onClickLogo = () => {
+        setClickCount(clickCount + 1);
+    };
+    useEffect(() => {
+        if (clickCount === 5) {
+            alert("이스터에그를 찾았어요! 1주년 기념글의 댓글에 이 사진을 캡처해서 올려주세요.");
+        }
+    }, [ clickCount ]);
+
     return (
         <ThemeContext.Provider value={{ theme, toggleTheme }}>
             <Header />
             <main>
                 <div>
-                    <img id="logo-img" src={theme === "light" ? logoLight : logoDark} alt="로고 이미지" />
+                    <img id="logo-img" src={theme === "light" ? logoLight : logoDark} alt="로고 이미지" onClick={() => onClickLogo()} />
                     <p id="subtitle">
                         자리닷컴
                     </p>
