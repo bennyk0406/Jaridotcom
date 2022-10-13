@@ -67,17 +67,9 @@ const App = () => {
         setCheckedData((checkedData) => [ ...checkedData ].fill(checked));
     };
 
-    // CHUSEOK
-    const [ pink, setPink ] = useState<number|undefined>(0);
-    const [ songgi, setSonggi ] = useState<number|undefined>(0);
-    const [ flower, setFlower ] = useState<number|undefined>(0);
-    const [ pig, setPig ] = useState<number|undefined>(0);
-    // CHUSEOK
-
     const [ calculatedItemData, setCalculatedItemData ] = useState<Item[]>(itemData[level]);
 
     const changeProbability = () => {
-        const weight = 1 + (0.025 * (pink ?? 0)) + (0.05 * (songgi ?? 0)) + (0.1 * (flower ?? 0)) + (0.2 * (pig ?? 0));
         const copiedItemData = itemData[level].map((value, i) => ({
             ...value,
             probability: checkedData[i] ? 0 : value.probability
@@ -87,34 +79,10 @@ const App = () => {
             .reduce((acc, cur) => acc + cur);
         const resultItemData = copiedItemData.map((value) => ({
             ...value,
-            probability: value.probability * (100 / uncheckedProbability)
+            probability: Math.round(value.probability * (100 / uncheckedProbability) * 1000) / 1000
         }));
-
-        // CHUSEOK
-        const equipItemTotalProbability = resultItemData
-            .filter((v) => v.isEquipItem)
-            .map((v) => v.probability)
-            .reduce((acc, cur) => acc + cur);
-        const weightedResultItemData = resultItemData
-            .map((v) => {
-                if (v.isEquipItem) {
-                    v.probability *= weight;
-                }
-                else {
-                    v.probability *= (100 - (weight * equipItemTotalProbability)) / (100 - equipItemTotalProbability);
-                }
-                return v;
-            })
-            .map((value) => ({
-                ...value,
-                probability: Math.round(value.probability * 1000) / 1000
-            }));
-        setCalculatedItemData(weightedResultItemData);
+        setCalculatedItemData(resultItemData);
     };
-
-    useEffect(() => {
-        changeProbability();
-    }, [ pink, songgi, flower, pig ]);
 
     useEffect(() => {
         for (let i = 0; i < checkedData.length; i++) {
@@ -184,92 +152,6 @@ const App = () => {
         <ThemeContext.Provider value={{ theme, toggleTheme }}>
             <Header />
             <main>
-                <div id="songpyeon-container">
-                    <label>
-                        분홍 송편:
-                        <div className="amount">
-                            <input
-                                className="songpyeon"
-                                type="number"
-                                value={pink ?? ""}
-                                onChange={(e) => {
-                                    const amount = e.target.valueAsNumber;
-                                    if (isNaN(amount)) {
-                                        setPink(undefined);
-                                    }
-                                    else {
-                                        if (amount > 4) setPink(4);
-                                        else setPink(e.target.valueAsNumber);
-                                    }
-                                }}>
-                            </input>
-                            개
-                        </div>
-                    </label>
-                    <label>
-                        송기 송편:
-                        <div className="amount">
-                            <input
-                                className="songpyeon"
-                                type="number"
-                                value={songgi ?? ""}
-                                onChange={(e) => {
-                                    const amount = e.target.valueAsNumber;
-                                    if (isNaN(amount)) {
-                                        setSonggi(undefined);
-                                    }
-                                    else {
-                                        if (amount > 4) setSonggi(4);
-                                        else setSonggi(e.target.valueAsNumber);
-                                    }
-                                }}>
-                            </input>
-                            개
-                        </div>
-                    </label>
-                    <label>
-                        꽃 송편:
-                        <div className="amount">
-                            <input
-                                className="songpyeon"
-                                type="number"
-                                value={flower ?? ""}
-                                onChange={(e) => {
-                                    const amount = e.target.valueAsNumber;
-                                    if (isNaN(amount)) {
-                                        setFlower(undefined);
-                                    }
-                                    else {
-                                        if (amount > 4) setFlower(4);
-                                        else setFlower(e.target.valueAsNumber);
-                                    }
-                                }}>
-                            </input>
-                            개
-                        </div>
-                    </label>
-                    <label>
-                        돼지 송편:
-                        <div className="amount">
-                            <input
-                                className="songpyeon"
-                                type="number"
-                                value={pig ?? ""}
-                                onChange={(e) => {
-                                    const amount = e.target.valueAsNumber;
-                                    if (isNaN(amount)) {
-                                        setPig(undefined);
-                                    }
-                                    else {
-                                        if (amount > 4) setPig(4);
-                                        else setPig(e.target.valueAsNumber);
-                                    }
-                                }}>
-                            </input>
-                            개
-                        </div>
-                    </label>
-                </div>
                 <table className="item-table">
                     <thead>
                         <tr id="item-table-header">

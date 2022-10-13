@@ -24,7 +24,7 @@ const Authority = () => {
                     />
                 </label>
                 <p id="postcard-fame">
-                    권위의 엽서 명성 : -{fame.toLocaleString()}
+                    권위의 엽서 명성 : -{/* fame.toLocaleString() */ "서비스 점검 중입니다."}
                 </p>
             </article>
         </section>

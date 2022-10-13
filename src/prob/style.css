@@ -163,38 +163,3 @@ svg {
 #screenshot {
     height: 55px;
 }
-
-/* CHUSEOK */
-#songpyeon-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px 0;
-    width: 180px;
-    margin: 20px auto 10px;
-}
-
-input[type="number"] {
-    width: 50px;
-    background-color: transparent;
-    color: var(--text);
-    border: 1px solid var(--text);
-    box-shadow: none;
-    margin: 0 4px 0 0;
-    font-size: 15px;
-    text-align: right;
-}
-
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-.amount {
-    display: inline-block;
-}
-
-label {
-    display: flex;
-    justify-content: space-between;
-}
