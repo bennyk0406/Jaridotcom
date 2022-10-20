@@ -430,7 +430,7 @@ const itemData = {
         {
             name: "마녀의 연마제",
             probability: 0.5,
-            isEquipItem: true
+            isEquipItem: false
         }
     ]
 };
