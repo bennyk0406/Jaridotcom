@@ -18,13 +18,13 @@ const Authority = () => {
                         onChange={
                             (e) => {
                                 const value = e.target.valueAsNumber || 0;
-                                setFame(Math.floor(20 + (0.015 * value)));
+                                setFame(value < 0 ? 20 : Math.floor(20 + (1.2 * Math.sqrt(value))));
                             }
                         }
                     />
                 </label>
                 <p id="postcard-fame">
-                    권위의 엽서 명성 : {"서비스 점검 중입니다."/* -{fame.toLocaleString()} */ }
+                    권위의 엽서 명성 : -{fame.toLocaleString()}
                 </p>
             </article>
         </section>
