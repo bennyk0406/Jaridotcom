@@ -11,7 +11,7 @@ const itemData = {
             isEquipItem: true
         },
         {
-            name: "'눈토끼 정령 테두리",
+            name: "눈토끼 정령 테두리",
             probability: 3,
             isEquipItem: true
         },
