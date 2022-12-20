@@ -18,7 +18,7 @@ const Authority = () => {
                         onChange={
                             (e) => {
                                 const value = e.target.valueAsNumber || 0;
-                                setFame(value < 0 ? 20 : Math.floor(20 + (1.2 * Math.sqrt(value))));
+                                setFame(value < 0 ? 20 : 20 + Math.floor(1.2 * Math.sqrt(value)));
                             }
                         }
                     />
