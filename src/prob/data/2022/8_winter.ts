@@ -96,7 +96,7 @@ const itemData = {
             isEquipItem: true
         },
         {
-            name: "'눈 내리는 겨울 숲",
+            name: "눈 내리는 겨울 숲",
             probability: 1.07,
             isEquipItem: true
         },
