@@ -32,9 +32,15 @@ const App = () => {
 
     const appendExpression = (value: string) => {
         setExpressions((expressions) => {
-            const newExps = structuredClone(expressions);
-            newExps[expressionIndex].push(value);
-            return newExps;
+            try {
+                const newExps = structuredClone(expressions);
+                newExps[expressionIndex].push(value);
+                return newExps;
+            }
+            catch (e) {
+                alert(e);
+                return expressions;
+            }
         });
     };
 
