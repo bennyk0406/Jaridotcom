@@ -16,7 +16,7 @@ const CalculatorHeader: React.FC<CalculatorHeaderProps> = (props) =>
             margin: auto 10px auto 0;
             display: inline-block;`
         }>
-            <img src={props.src} />
+            <img src={props.src} css={css`width: 100%; height: 100%;`} />
         </div>
         <span css={css`
             font-size: 20px;
