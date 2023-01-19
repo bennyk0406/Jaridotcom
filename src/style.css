@@ -6,8 +6,17 @@ body {
     -khtml-user-select: none;
     -webkit-user-select: none;
     user-select: none;
-    overflow: hidden;
+    overflow-y: scroll;
 }
+
+html {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
 
 #root {
     display: flex;
