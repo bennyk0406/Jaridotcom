@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../theme-context";
 import Header from "../components/Header";
@@ -8,6 +9,7 @@ import screenshot from "../assets/screenshot.svg";
 import "./style.css";
 import type { Theme } from "../theme-context";
 import html2canvas from "html2canvas";
+import { css } from "@emotion/react";
 
 type Level = "high" | "low";
 
@@ -151,17 +153,39 @@ const App = () => {
     return (
         <ThemeContext.Provider value={{ theme, toggleTheme }}>
             <Header />
-            <main>
-                <table className="item-table">
+            <main css={css`
+                flex-grow: 1;
+                padding: 5px 0 80px;
+                color: ${theme === "light" ? "black" : "white"};
+                background-color: ${theme === "light" ? "white" : "#2d2d32"};
+                overflow-y: scroll;
+                font-size: 18px;
+            `}>
+                <table css={css`
+                    width: 90vw;
+                    max-width: 500px;
+                    table-layout: fixed;
+                    margin: 0 auto;
+                    border-collapse: collapse;
+                    margin-top: 40px;
+                `}>
                     <thead>
-                        <tr id="item-table-header">
-                            <th id="checkbox-raw">
+                        <tr css={css`
+                            border-bottom: 1px solid var(--text);
+                        `}>
+                            <th css={css`
+                                width: 20%;
+                            `}>
                                 <input id="select-all-checkbox" type="checkbox" onChange={(e) => toggleAllchecked(e.target.checked)} checked={checkedData.every((v) => v)} />
                             </th>
-                            <th id="name-raw">
+                            <th css={css`
+                                width: 55%;
+                            `}>
                                 아이템
                             </th>
-                            <th id="probability-raw">
+                            <th css={css`
+                                width: 25%;
+                            `}>
                                 확률
                             </th>
                         </tr>
@@ -169,13 +193,22 @@ const App = () => {
                     <tbody>
                         {calculatedItemData.map((v, i) =>
                             <tr key={v.name}>
-                                <td>
+                                <td css={css`
+                                    padding: 0px 1rem;
+                                    text-align: center;
+                                `}>
                                     {v.isEquipItem && <input type="checkbox" onChange={() => toggleCheckedData(i)} checked={checkedData[i] ?? false} />}
                                 </td>
-                                <td>
+                                <td css={css`
+                                    padding: 0px 1rem;
+                                    text-align: center;
+                                `}>
                                     {v.name}
                                 </td>
-                                <td>
+                                <td css={css`
+                                    padding: 0px 1rem;
+                                    text-align: center;
+                                `}>
                                     {`${v.probability}%`}
                                 </td>
                             </tr>)
@@ -183,11 +216,42 @@ const App = () => {
                     </tbody>
                 </table>
             </main>
-            <footer>
-                <button type="button" id="screenshot-button" onClick={() => takeScreenshot()}>
-                    <img id="screenshot" src={screenshot} alt="스크린샷 이미지" />
+            <footer css={css`
+                vertical-align: middle;
+                width: 100%;
+                height: 55px;
+                background: ${theme === "light" ? "#e7eaeb" : "#373737"};
+                color: ${theme === "light" ? "black" : "white"};
+                text-align: center;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                font-weight: bold;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            `}>
+                <button
+                    css={css`
+                        background-color: transparent;
+                        border: 0;
+                        outline: 0;
+                        width: 55px;
+                        cursor: pointer;
+                        padding: 0 5px;
+                    `}
+                    onClick={takeScreenshot}>
+                    <img
+                        id="screenshot"
+                        css={css`
+                            height: 55px;`
+                        }
+                        src={screenshot}
+                        alt="스크린샷 이미지" />
                 </button>
-                <span id="total-probability">
+                <span>
                     {
                         `장착 아이템 확률 : ${
                             Math.round(
@@ -199,8 +263,22 @@ const App = () => {
                         }%`
                     }
                 </span>
-                <button type="button" id="gashapon-button" onClick={() => toggleLevel()}>
-                    <img className="gashapon-img" src={level === "high" ? high : low} alt="종류 변경 이미지" />
+                <button
+                    css={css`
+                        background-color: transparent;
+                        border: 0;
+                        outline: 0;
+                        width: 90px;
+                        cursor: pointer;
+                        padding: 0 5px;
+                    `}
+                    onClick={toggleLevel}>
+                    <img
+                        css={css`
+                            width: 100%;
+                        `}
+                        src={level === "high" ? high : low}
+                        alt="종류 변경 이미지"/>
                 </button>
             </footer>
         </ThemeContext.Provider>
