@@ -32,15 +32,9 @@ const App = () => {
 
     const appendExpression = (value: string) => {
         setExpressions((expressions) => {
-            try {
-                const newExps = structuredClone(expressions);
-                newExps[expressionIndex].push(value);
-                return newExps;
-            }
-            catch (e) {
-                alert(e);
-                return expressions;
-            }
+            const newExps = expressions.map((v) => [ ...v ]);
+            newExps[expressionIndex].push(value);
+            return newExps;
         });
     };
 
@@ -54,7 +48,7 @@ const App = () => {
         if (timer !== undefined) clearTimeout(timer);
         if (isMouseDown) {
             setExpressions((expressions) => {
-                const newExps = structuredClone(expressions);
+                const newExps = expressions.map((v) => [ ...v ]);
                 newExps[expressionIndex] = [];
                 return newExps;
             });
