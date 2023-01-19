@@ -11,7 +11,8 @@ export default defineConfig({
             input: {
                 main: resolve(__dirname, "src/index.html"),
                 prob: resolve(__dirname, "src/prob/index.html"),
-                calc: resolve(__dirname, "src/calc/index.html")
+                calc: resolve(__dirname, "src/calc/index.html"),
+                dice: resolve(__dirname, "src/dice/index.html")
             }
         },
         outDir: resolve(__dirname, "dist")
