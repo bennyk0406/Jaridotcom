@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
+import { type SerializedStyles, css } from "@emotion/react";
 import { useContext } from "react";
 import { ThemeContext } from "./theme-context";
 
@@ -7,11 +7,14 @@ interface ShortcutProps extends React.PropsWithChildren {
     content: string;
     imgSrc: string;
     href: string;
+    style?: SerializedStyles;
 }
 
 const Shortcut: React.FC<ShortcutProps> = (props) => {
     const { theme } = useContext(ThemeContext);
-    return (<div>
+    return (<div css={css`
+        ${props.style};
+    `}>
         <button css={css`
             height: 120px;
             width: 120px;

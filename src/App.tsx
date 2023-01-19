@@ -35,6 +35,7 @@ const App = () => {
                 padding-top: 10px;
                 flex-direction: column;
                 gap: 10px;
+                overflow-y: scroll;
             `}>
                 <div>
                     <img
@@ -50,7 +51,7 @@ const App = () => {
                 </div>
                 <Shortcut content="뽑기권 확률 계산기" imgSrc={prob} href="./prob/"/>
                 <Shortcut content="주사위 엽서 확률 계산기" imgSrc={dice} href="./dice/"/>
-                <Shortcut content="기타 계산기" imgSrc={calc} href="./calc/"/>
+                <Shortcut content="기타 계산기" imgSrc={calc} href="./calc/" style={css`padding-bottom: 40px;`}/>
             </main>
         </ThemeContext.Provider>
     );
