@@ -75,10 +75,10 @@ const App = () => {
             .replaceAll("÷", "/")
             .replaceAll("명성", "fame")
             .replaceAll("명", "Math.floor(fame / 10)")
-            .replaceAll("성", "fame % 10")
+            .replaceAll("성", "(fame % 10)")
             .replaceAll("일수", "day")
             .replaceAll("일", "Math.floor(day / 10)")
-            .replaceAll("수", "day % 10"));
+            .replaceAll("수", "(day % 10)"));
         const [ exp1, exp2, exp3 ] = exp.map((v) =>
             new Function("fame", "day", `return ${v === "" ? true : v}`));
         if (exp.some((v) => v.includes("짝수") || v.includes("홀수"))) {
@@ -173,7 +173,7 @@ const App = () => {
                             content="CE"
                             action={() =>
                                 setExpressions((expressions) => {
-                                    const newExps = structuredClone(expressions);
+                                    const newExps = expressions.map((v) => [ ...v ]);
                                     newExps[expressionIndex] = newExps[expressionIndex].slice(0, -1);
                                     return newExps;
                                 })
