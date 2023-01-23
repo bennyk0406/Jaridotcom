@@ -3,6 +3,7 @@ import { type SerializedStyles, css } from "@emotion/react";
 
 interface ExpressionProps extends React.PropsWithChildren {
     expression: string[];
+    placeHolder: string;
     action: () => void;
     style?: SerializedStyles;
 }
@@ -12,7 +13,7 @@ const ExpDisplay: React.FC<ExpressionProps> = (props) =>
         ${props.style};
         height: 50px;
         background-color: white;
-        color: black;
+        color: ${props.expression.length === 0 ? "#7b7b7b" : "black"};
         border-radius: 8px;
         margin-bottom: 10px;
         display: flex;
@@ -25,7 +26,7 @@ const ExpDisplay: React.FC<ExpressionProps> = (props) =>
             overflow: hidden;
             white-space: nowrap;
         `}>
-            {props.expression.join("")}
+            {props.expression.length === 0 ? props.placeHolder : props.expression.join("")}
         </span>
     </div>);
 

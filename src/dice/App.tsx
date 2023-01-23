@@ -149,6 +149,7 @@ const App = () => {
                                 border: ${expressionIndex === v ? "1px solid black" : "1px solid #dadce0"};
                             `}
                             key={v}
+                            placeHolder={`조건${v + 1}`}
                             expression={expressions[v]}
                             action={() => setExpressionIndex(v)}
                         />
