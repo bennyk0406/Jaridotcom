@@ -353,7 +353,7 @@ const itemData = {
             probability: 1.1
         },
         {
-            name: "필름테두리",
+            name: "필름 테두리",
             isEquipItem: true,
             probability: 1.1
         },
