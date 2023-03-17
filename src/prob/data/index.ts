@@ -1,1 +1,1 @@
-export { default } from "./2023/1_newyear";
+export { default } from "./2023/2_anniversary";
