@@ -1,12 +1,12 @@
 const itemData = {
     low: [
         {
-            name: "앤티크 상인 마술사 스킨",
+            name: "앤티크 상인 마술사",
             probability: 0.6,
             isEquipItem: true
         },
         {
-            name: "트레저 헌터 도굴꾼 스킨",
+            name: "트레저 헌터 도굴꾼",
             probability: 0.6,
             isEquipItem: true
         },
@@ -36,12 +36,12 @@ const itemData = {
             isEquipItem: true
         },
         {
-            name: "산맥을 넘는 정치인 스킨",
+            name: "산맥을 넘는 정치인",
             probability: 0.16,
             isEquipItem: true
         },
         {
-            name: "키스하는 연인 스킨",
+            name: "키스하는 연인",
             probability: 0.16,
             isEquipItem: true
         },
@@ -81,12 +81,12 @@ const itemData = {
             isEquipItem: true
         },
         {
-            name: "벨보이 마피아 스킨",
+            name: "벨보이 마피아",
             probability: 0.16,
             isEquipItem: true
         },
         {
-            name: "바텐더 스파이 스킨",
+            name: "바텐더 스파이",
             probability: 0.16,
             isEquipItem: true
         },
@@ -116,7 +116,7 @@ const itemData = {
             isEquipItem: true
         },
         {
-            name: "화가 예언자 스킨",
+            name: "화가 예언자",
             probability: 0.16,
             isEquipItem: true
         },
@@ -141,17 +141,17 @@ const itemData = {
             isEquipItem: true
         },
         {
-            name: "야전병원의 의사 스킨",
+            name: "야전병원의 의사",
             probability: 0.16,
             isEquipItem: true
         },
         {
-            name: "결의에 찬 시민 스킨",
+            name: "결의에 찬 시민",
             probability: 0.16,
             isEquipItem: true
         },
         {
-            name: "최전선의 자경단원 스킨",
+            name: "최전선의 자경단원",
             probability: 0.16,
             isEquipItem: true
         },
@@ -273,12 +273,12 @@ const itemData = {
     ],
     high: [
         {
-            name: "앤티크 상인 마술사 스킨",
+            name: "앤티크 상인 마술사",
             probability: 3,
             isEquipItem: true
         },
         {
-            name: "트레저 헌터 도굴꾼 스킨",
+            name: "트레저 헌터 도굴꾼",
             probability: 3,
             isEquipItem: true
         },
@@ -308,12 +308,12 @@ const itemData = {
             isEquipItem: true
         },
         {
-            name: "산맥을 넘는 정치인 스킨",
+            name: "산맥을 넘는 정치인",
             probability: 1,
             isEquipItem: true
         },
         {
-            name: "키스하는 연인 스킨",
+            name: "키스하는 연인",
             probability: 1,
             isEquipItem: true
         },
@@ -353,12 +353,12 @@ const itemData = {
             isEquipItem: true
         },
         {
-            name: "벨보이 마피아 스킨",
+            name: "벨보이 마피아",
             probability: 1,
             isEquipItem: true
         },
         {
-            name: "바텐더 스파이 스킨",
+            name: "바텐더 스파이",
             probability: 1,
             isEquipItem: true
         },
@@ -388,7 +388,7 @@ const itemData = {
             isEquipItem: true
         },
         {
-            name: "화가 예언자 스킨",
+            name: "화가 예언자",
             probability: 1,
             isEquipItem: true
         },
@@ -413,17 +413,17 @@ const itemData = {
             isEquipItem: true
         },
         {
-            name: "야전병원의 의사 스킨",
+            name: "야전병원의 의사",
             probability: 1,
             isEquipItem: true
         },
         {
-            name: "결의에 찬 시민 스킨",
+            name: "결의에 찬 시민",
             probability: 1,
             isEquipItem: true
         },
         {
-            name: "최전선의 자경단원 스킨",
+            name: "최전선의 자경단원",
             probability: 1,
             isEquipItem: true
         },
