@@ -1,1 +1,1 @@
-export { default } from "./2023/2_anniversary";
+export { default } from "./2023/3_contest";
