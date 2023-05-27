@@ -3,37 +3,37 @@ const itemData = {
         {
             name: "스페이드의 에이스 자경단원",
             probability: 3,
-            isEquipItem: false
+            isEquipItem: true
         },
         {
             name: "조커 마녀",
             probability: 3,
-            isEquipItem: false
+            isEquipItem: true
         },
         {
             name: "인터미션 테두리",
             probability: 3,
-            isEquipItem: false
+            isEquipItem: true
         },
         {
             name: "트럼프 베스트 테두리",
             probability: 3,
-            isEquipItem: false
+            isEquipItem: true
         },
         {
             name: "이야기의 무대",
             probability: 3,
-            isEquipItem: false
+            isEquipItem: true
         },
         {
             name: "체크무늬 클래식 튀튀",
             probability: 3,
-            isEquipItem: false
+            isEquipItem: true
         },
         {
             name: "트럼프 세상 속 조커들",
             probability: 2,
-            isEquipItem: false
+            isEquipItem: true
         },
         {
             name: "황야의 승부사 건달",
