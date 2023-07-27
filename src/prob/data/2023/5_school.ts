@@ -243,12 +243,12 @@ const itemData = {
             isEquipItem: true
         },
         {
-            name: "음악교사 마술사 스킨",
+            name: "음악교사 마술사",
             probability: 0.15,
             isEquipItem: true
         },
         {
-            name: "영양사 과학자 스킨",
+            name: "영양사 과학자",
             probability: 0.15,
             isEquipItem: true
         },
@@ -313,32 +313,32 @@ const itemData = {
             isEquipItem: true
         },
         {
-            name: "사춘기 소녀 마담 스킨",
+            name: "사춘기 소녀 마담",
             probability: 0.15,
             isEquipItem: true
         },
         {
-            name: "치킨 털이범 도둑 스킨",
+            name: "치킨 털이범 도둑",
             probability: 0.15,
             isEquipItem: true
         },
         {
-            name: "과학부원 테러리스트 스킨",
+            name: "과학부원 테러리스트",
             probability: 0.15,
             isEquipItem: true
         },
         {
-            name: "수학교사 자경단원 스킨",
+            name: "수학교사 자경단원",
             probability: 0.15,
             isEquipItem: true
         },
         {
-            name: "선도부원 정치인 스킨",
+            name: "선도부원 정치인",
             probability: 0.15,
             isEquipItem: true
         },
         {
-            name: "응원단장 영매 스킨",
+            name: "응원단장 영매",
             probability: 0.15,
             isEquipItem: true
         },
