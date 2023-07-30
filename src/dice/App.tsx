@@ -66,8 +66,8 @@ const App = () => {
 
     const calculateProb = () => {
         const exp = expressions.map((v) => v.join("")
-            .replace("=홀", "%2=1")
-            .replace("=짝", "%2=0")
+            .replace(/^(.*)=홀$/, "($1)%2=1")
+            .replace(/^(.*)=짝$/, "($1)%2=0")
             .replace("=", "==")
             .replace("≥", ">=")
             .replace("≤", "<=")
