@@ -34,3 +34,8 @@ body {
     height: calc(var(--vh, 1vh) * 100);
     overflow-x: hidden;
 }
+
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

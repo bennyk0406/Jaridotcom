@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { useContext, useEffect, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../theme-context";
 import Header from "../components/Header";
 import itemData from "./data/";
@@ -26,6 +26,43 @@ window.addEventListener("resize", () => {
 
 const vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty("--vh", `${vh}px`);
+
+interface SongpyeonProps {
+    name: string;
+    value: number | undefined;
+    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+}
+
+const Songpyeon: React.FC<SongpyeonProps> = (props) => {
+    return (
+        <label css={css`
+            display: flex;
+            justify-content: space-between;
+        `}>
+            {props.name}:
+            <div css={css`
+                display: inline-block;
+            `}>
+                <input
+                    css={css`
+                        width: 50px;
+                        background-color: transparent;
+                        color: var(--text);
+                        border: 1px solid var(--text);
+                        box-shadow: none;
+                        margin: 0 4px 0 0;
+                        font-size: 15px;
+                        text-align: right;
+                    `}
+                    type="number"
+                    value={props.value ?? ""}
+                    onChange={props.onChange}
+                />
+                개
+            </div>
+        </label>
+    )
+};
 
 const App = () => {
     const [ theme, setTheme ] = useState<Theme>(useContext(ThemeContext).theme);
@@ -69,6 +106,14 @@ const App = () => {
         setCheckedData((checkedData) => [ ...checkedData ].fill(checked));
     };
 
+    // CHUSEOK
+    const [ pink, setPink ] = useState<number|undefined>(0);
+    const [ songgi, setSonggi ] = useState<number|undefined>(0);
+    const [ flower, setFlower ] = useState<number|undefined>(0);
+    const [ pig, setPig ] = useState<number|undefined>(0);
+    const [ clan, setClan ] = useState<number|undefined>(0);
+    // CHUSEOK
+
     const [ calculatedItemData, setCalculatedItemData ] = useState<Item[]>(itemData[level]);
 
     const changeProbability = () => {
@@ -83,8 +128,36 @@ const App = () => {
             ...value,
             probability: Math.round(value.probability * (100 / uncheckedProbability) * 1000) / 1000
         }));
-        setCalculatedItemData(resultItemData);
+        // setCalculatedItemData(resultItemData);
+
+        // CHUSEOK
+        const weight = 1 + (0.025 * (pink ?? 0)) + (0.05 * (songgi ?? 0)) + (0.1 * (flower ?? 0)) + (0.2 * (pig ?? 0)) + (0.25 * (clan ?? 0));
+        const equipItemTotalProbability = resultItemData
+            .filter((v) => v.isEquipItem)
+            .map((v) => v.probability)
+            .reduce((acc, cur) => acc + cur);
+        const weightedResultItemData = resultItemData
+            .map((v) => {
+                if (v.isEquipItem) {
+                    v.probability *= weight;
+                }
+                else {
+                    v.probability *= (100 - (weight * equipItemTotalProbability)) / (100 - equipItemTotalProbability);
+                }
+                return v;
+            })
+            .map((value) => ({
+                ...value,
+                probability: Math.round(value.probability * 1000) / 1000
+            }));
+
+        setCalculatedItemData(weightedResultItemData);
     };
+
+    // CHUSEOK
+    useEffect(() => {
+        changeProbability();
+    }, [ pink, songgi, flower, pig, clan ]);
 
     useEffect(() => {
         for (let i = 0; i < checkedData.length; i++) {
@@ -161,6 +234,59 @@ const App = () => {
                 overflow-y: scroll;
                 font-size: 18px;
             `}>
+            <div css={css`
+                display: flex;
+                flex-direction: column;
+                gap: 10px 0;
+                width: 180px;
+                margin: 10px auto;
+            `}>
+                <Songpyeon
+                    name="분홍송편"
+                    value={pink}
+                    onChange={(e) => {
+                        const amount = e.target.valueAsNumber;
+                        if (isNaN(amount)) setPink(undefined);
+                        else setPink(Math.min(4, amount));
+                    }}
+                />
+                <Songpyeon
+                    name="송기송편"
+                    value={songgi}
+                    onChange={(e) => {
+                        const amount = e.target.valueAsNumber;
+                        if (isNaN(amount)) setSonggi(undefined);
+                        else setSonggi(Math.min(4, amount));
+                    }}
+                />
+                <Songpyeon
+                    name="꽃송편"
+                    value={flower}
+                    onChange={(e) => {
+                        const amount = e.target.valueAsNumber;
+                        if (isNaN(amount)) setFlower(undefined);
+                        else setFlower(Math.min(4, amount));
+                    }}
+                />
+                <Songpyeon
+                    name="돼지송편"
+                    value={pig}
+                    onChange={(e) => {
+                        const amount = e.target.valueAsNumber;
+                        if (isNaN(amount)) setPig(undefined);
+                        else setPig(Math.min(4, amount));
+                    }}
+                />
+                <Songpyeon
+                    name="가문 송편"
+                    value={clan}
+                    onChange={(e) => {
+                        const amount = e.target.valueAsNumber;
+                        if (isNaN(amount)) setClan(undefined);
+                        else setClan(Math.min(4, amount));
+                    }}
+                />
+            </div>
                 <table css={css`
                     width: 90vw;
                     max-width: 500px;
