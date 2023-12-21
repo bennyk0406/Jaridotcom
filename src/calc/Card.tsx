@@ -1,8 +1,9 @@
-import { useState } from "react";
-import CalculatorHeader from "../components/CalculatorHeader";
-import cardSvg from "../assets/card.svg";
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
+import { forwardRef, useState } from "react";
+import Input from "../components/Input";
 
-const Card = () => {
+const Card = forwardRef<HTMLDivElement>((_, ref) => {
     const [ tierThreeAmount, setTierThreeAmount ] = useState<number|undefined>(0);
     const [ tierFourAmount, setTierFourAmount ] = useState<number|undefined>(0);
     const [ tierFiveAmount, setTierFiveAmount ] = useState<number|undefined>(0);
@@ -63,57 +64,78 @@ const Card = () => {
     };
 
     return (
-        <section id="card">
-            <CalculatorHeader src={cardSvg} title="카드 계산기" />
-            <article>
-                <label>
-                    3티어 카드 개수 :
-                    <input
-                        type="number"
-                        className="card-input"
-                        value={tierThreeAmount ?? ""}
-                        onChange={(e) => {
-                            const changedAmount = e.target.valueAsNumber;
-                            changeCardInfo(changedAmount, 3);
-                        }}
-                    />
-                    개
-                </label>
-                <label>
-                    4티어 카드 개수 :
-                    <input
-                        type="number"
-                        className="card-input"
-                        value={tierFourAmount ?? ""}
-                        onChange={(e) => {
-                            const changedAmount = e.target.valueAsNumber;
-                            changeCardInfo(changedAmount, 4);
-                        }}
-                    />
-                    개
-                </label>
-                <label>
-                    5티어 카드 개수 :
-                    <input
-                        type="number"
-                        className="card-input"
-                        value={tierFiveAmount ?? ""}
-                        onChange={(e) => {
-                            const changedAmount = e.target.valueAsNumber;
-                            changeCardInfo(changedAmount, 5);
-                        }}
-                    />
-                    개
-                </label>
-                <p id="card-required-amount">
-                    추가로 필요한 3티어 카드 개수 : {requiredCardAmount}
-                </p>
-                <p id="card-required-ruble">
-                    6티어 강화까지 필요한 루블 : {requiredRuble.toLocaleString()}
-                </p>
-            </article>
-        </section>
+        <div
+            ref={ref}
+            css={css`
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                border-radius: 10px;
+                background-color: var(--section);
+                padding: 0 15px 10px;
+            `}
+        >
+            <p css={css`
+                text-align: center;
+                font-size: 18px;
+                padding: 10px 0;
+                border-bottom: 1px dashed gray;
+            `}>
+                6티어 카드 계산기
+            </p>
+            <label>
+                3티어 카드 개수 :
+                <Input
+                    width={50}
+                    value={tierThreeAmount ?? ""}
+                    action={(e) => {
+                        const changedAmount = e.target.valueAsNumber;
+                        changeCardInfo(changedAmount, 3);
+                    }}
+                    style={css`
+                        margin: 0 5px 0 10px;
+                    `}
+                />
+                개
+            </label>
+            <label>
+                4티어 카드 개수 :
+                <Input
+                    width={50}
+                    value={tierFourAmount ?? ""}
+                    action={(e) => {
+                        const changedAmount = e.target.valueAsNumber;
+                        changeCardInfo(changedAmount, 4);
+                    }}
+                    style={css`
+                        margin: 0 5px 0 10px;
+                    `}
+                />
+                개
+            </label>
+            <label>
+                5티어 카드 개수 :
+                <Input
+                    width={50}
+                    value={tierFiveAmount ?? ""}
+                    action={(e) => {
+                        const changedAmount = e.target.valueAsNumber;
+                        changeCardInfo(changedAmount, 5);
+                    }}
+                    style={css`
+                        margin: 0 5px 0 10px;
+                    `}
+                />
+                개
+            </label>
+            <p id="card-required-amount">
+                추가로 필요한 3티어 카드 개수 : {requiredCardAmount}
+            </p>
+            <p id="card-required-ruble">
+                6티어 강화까지 필요한 루블 : {requiredRuble.toLocaleString()}
+            </p>
+        </div>
     );
-};
+});
 
 export default Card;
