@@ -21,7 +21,7 @@ const ExpDisplay: React.FC<ExpressionProps> = (props) =>
     `}
     onClick={props.action}>
         <span css={css`
-            margin: auto 5px;
+            margin: auto 7px;
             text-overflow: clip;
             overflow: hidden;
             white-space: nowrap;

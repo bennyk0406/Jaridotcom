@@ -1,17 +1,11 @@
 /** @jsxImportSource @emotion/react */
-import { ChangeEvent, useContext, useEffect, useState } from "react";
-import { ThemeContext } from "../theme-context";
-import Header from "../components/Header";
-import itemData from "./data/";
-import high from "../assets/high.png";
-import low from "../assets/low.png";
-import screenshot from "../assets/screenshot.svg";
-import "./style.css";
-import type { Theme } from "../theme-context";
+import { useEffect, useState } from "react";
+import itemData from "./data";
 import html2canvas from "html2canvas";
 import { css } from "@emotion/react";
 
-type Level = "high" | "low";
+const levels = ["low", "high", "legend"] as const;
+type Level = typeof levels[number];
 
 interface Item {
     name: string;
@@ -27,57 +21,47 @@ window.addEventListener("resize", () => {
 const vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty("--vh", `${vh}px`);
 
-interface SongpyeonProps {
-    name: string;
-    value: number | undefined;
-    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-}
+// interface SongpyeonProps {
+//     name: string;
+//     value: number | undefined;
+//     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+// }
 
-const Songpyeon: React.FC<SongpyeonProps> = (props) => {
-    return (
-        <label css={css`
-            display: flex;
-            justify-content: space-between;
-        `}>
-            {props.name}:
-            <div css={css`
-                display: inline-block;
-            `}>
-                <input
-                    css={css`
-                        width: 50px;
-                        background-color: transparent;
-                        color: var(--text);
-                        border: 1px solid var(--text);
-                        box-shadow: none;
-                        margin: 0 4px 0 0;
-                        font-size: 15px;
-                        text-align: right;
-                    `}
-                    type="number"
-                    value={props.value ?? ""}
-                    onChange={props.onChange}
-                />
-                개
-            </div>
-        </label>
-    )
-};
+// const Songpyeon: React.FC<SongpyeonProps> = (props) => {
+//     return (
+//         <label css={css`
+//             display: flex;
+//             justify-content: space-between;
+//         `}>
+//             {props.name}:
+//             <div css={css`
+//                 display: inline-block;
+//             `}>
+//                 <input
+//                     css={css`
+//                         width: 50px;
+//                         background-color: transparent;
+//                         color: var(--text);
+//                         border: 1px solid var(--text);
+//                         box-shadow: none;
+//                         margin: 0 4px 0 0;
+//                         font-size: 15px;
+//                         text-align: right;
+//                     `}
+//                     type="number"
+//                     value={props.value ?? ""}
+//                     onChange={props.onChange}
+//                 />
+//                 개
+//             </div>
+//         </label>
+//     )
+// };
 
-const App = () => {
-    const [ theme, setTheme ] = useState<Theme>(useContext(ThemeContext).theme);
-    const toggleTheme = () => {
-        setTheme((theme) => theme === "light" ? "dark" : "light");
-    };
-
-    useEffect(() => {
-        document.documentElement.setAttribute("color-theme", theme);
-        localStorage.setItem("color-theme", theme);
-    }, [ theme ]);
-
+const Prob = () => {
     const [ level, setLevel ] = useState<Level>("high");
     const toggleLevel = () => {
-        setLevel((level) => level === "high" ? "low" : "high");
+        setLevel((level) => levels[(levels.indexOf(level) + 1) % 3]);
     };
 
     const [ checkedData, setCheckedData ] = useState<boolean[]>(
@@ -107,11 +91,11 @@ const App = () => {
     };
 
     // CHUSEOK
-    const [ pink, setPink ] = useState<number|undefined>(0);
-    const [ songgi, setSonggi ] = useState<number|undefined>(0);
-    const [ flower, setFlower ] = useState<number|undefined>(0);
-    const [ pig, setPig ] = useState<number|undefined>(0);
-    const [ clan, setClan ] = useState<number|undefined>(0);
+    // const [ pink, setPink ] = useState<number|undefined>(0);
+    // const [ songgi, setSonggi ] = useState<number|undefined>(0);
+    // const [ flower, setFlower ] = useState<number|undefined>(0);
+    // const [ pig, setPig ] = useState<number|undefined>(0);
+    // const [ clan, setClan ] = useState<number|undefined>(0);
     // CHUSEOK
 
     const [ calculatedItemData, setCalculatedItemData ] = useState<Item[]>(itemData[level]);
@@ -126,38 +110,38 @@ const App = () => {
             .reduce((acc, cur) => acc + cur);
         const resultItemData = copiedItemData.map((value) => ({
             ...value,
-            probability: Math.round(value.probability * (100 / uncheckedProbability) * 1000) / 1000
+            probability: uncheckedProbability === 0 ? 0 : Math.round(value.probability * (100 / uncheckedProbability) * 1000) / 1000
         }));
-        // setCalculatedItemData(resultItemData);
+        setCalculatedItemData(resultItemData);
 
         // CHUSEOK
-        const weight = 1 + (0.025 * (pink ?? 0)) + (0.05 * (songgi ?? 0)) + (0.1 * (flower ?? 0)) + (0.2 * (pig ?? 0)) + (0.25 * (clan ?? 0));
-        const equipItemTotalProbability = resultItemData
-            .filter((v) => v.isEquipItem)
-            .map((v) => v.probability)
-            .reduce((acc, cur) => acc + cur);
-        const weightedResultItemData = resultItemData
-            .map((v) => {
-                if (v.isEquipItem) {
-                    v.probability *= weight;
-                }
-                else {
-                    v.probability *= (100 - (weight * equipItemTotalProbability)) / (100 - equipItemTotalProbability);
-                }
-                return v;
-            })
-            .map((value) => ({
-                ...value,
-                probability: Math.round(value.probability * 1000) / 1000
-            }));
+        // const weight = 1 + (0.025 * (pink ?? 0)) + (0.05 * (songgi ?? 0)) + (0.1 * (flower ?? 0)) + (0.2 * (pig ?? 0)) + (0.25 * (clan ?? 0));
+        // const equipItemTotalProbability = resultItemData
+        //     .filter((v) => v.isEquipItem)
+        //     .map((v) => v.probability)
+        //     .reduce((acc, cur) => acc + cur);
+        // const weightedResultItemData = resultItemData
+        //     .map((v) => {
+        //         if (v.isEquipItem) {
+        //             v.probability *= weight;
+        //         }
+        //         else {
+        //             v.probability *= (100 - (weight * equipItemTotalProbability)) / (100 - equipItemTotalProbability);
+        //         }
+        //         return v;
+        //     })
+        //     .map((value) => ({
+        //         ...value,
+        //         probability: Math.round(value.probability * 1000) / 1000
+        //     }));
 
-        setCalculatedItemData(weightedResultItemData);
+        // setCalculatedItemData(weightedResultItemData);
     };
 
     // CHUSEOK
-    useEffect(() => {
-        changeProbability();
-    }, [ pink, songgi, flower, pig, clan ]);
+    // useEffect(() => {
+    //     changeProbability();
+    // }, [ pink, songgi, flower, pig, clan ]);
 
     useEffect(() => {
         for (let i = 0; i < checkedData.length; i++) {
@@ -187,54 +171,99 @@ const App = () => {
     };
 
     const takeScreenshot = async () => {
-        const [ main ] = document.getElementsByTagName("main");
-        main.style.overflowY = "visible";
-        main.style.paddingBottom = "0px";
+        const div = document.createElement("div");
+        div.style.display = "flex";
+        div.style.flexDirection = "column";
+        div.style.alignItems = "center";
 
-        const [ footer ] = document.getElementsByTagName("footer");
-        footer.style.position = "static";
-        footer.style.marginTop = "20px";
-
-        const svg = document.getElementById("screenshot") as HTMLElement;
-        svg.style.display = "none";
-
-        main.appendChild(footer);
-
-        const canvas = await html2canvas(main, {
+        const [ header ] = document.getElementsByTagName("header")
+        const wrapper = document.getElementById("wrapper");
+        if (!wrapper || !header) return;
+        
+        div.appendChild(header.cloneNode(true));
+        div.appendChild(wrapper.cloneNode(true));
+    
+        document.body.appendChild(div);
+        const canvas = await html2canvas(div, {
             scrollX: 0,
             scrollY: 0,
             allowTaint: true,
-            useCORS: true
+            useCORS: true,
+            onclone: async (clonedDoc) => {
+                const lvl = clonedDoc.getElementById("level");
+                lvl?.remove();
+            }
         });
+        div.remove()
         const element = document.createElement("a");
         element.href = canvas.toDataURL("image/png");
-        element.download = `${getFormattedTime()}-jari.png`;
+        element.download = `${getFormattedTime()}-jaricom.png`;
         if ([ "iphone", "ipad", "ipod" ].some((v) => v.includes(navigator.userAgent))) element.target = "_blank";
         document.body.appendChild(element);
         element.click();
-
-        main.removeChild(footer);
-
-        footer.style.position = "fixed";
-        footer.style.marginTop = "0px";
-        const root = document.getElementById("root") as HTMLElement;
-        root.appendChild(footer);
-
-        svg.style.display = "block";
+        element.remove();
     };
 
     return (
-        <ThemeContext.Provider value={{ theme, toggleTheme }}>
-            <Header />
-            <main css={css`
-                flex-grow: 1;
-                padding: 5px 0 80px;
-                color: ${theme === "light" ? "black" : "white"};
-                background-color: ${theme === "light" ? "white" : "#2d2d32"};
-                overflow-y: scroll;
-                font-size: 18px;
+        <div css={css`
+            display: flex;
+            flex-direction: column;
+            overflow-y: hidden;
+            height: 100%;
+            align-items: center;
+        `}>
+            <header css={css`
+                width: 100%;
+                height: 60px;
+                flex-basis: 60px;
+                flex-grow: 0;
+                flex-shrink: 0;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                background-color: var(--background);
+                border-bottom: 1px solid var(--border);
             `}>
-            <div css={css`
+                <img src="./assets/screenshot.svg" css={css`
+                    box-sizing: border-box;
+                    padding: 10px;
+                    margin-left: 5px;
+                    height: 95%;
+                `} onClick={takeScreenshot}/>
+                <span css={css`
+                    font-weight: bold;
+                    font-size: 18px;
+                `}>
+                    {
+                        `장착 아이템 확률 : ${
+                            Math.round(
+                                calculatedItemData
+                                    .filter((v) => v.isEquipItem)
+                                    .map((v) => v.probability)
+                                    .reduce((cur, acc) => cur + acc) * 1000
+                            ) / 1000
+                        }%`
+                    }
+                </span>
+                <div onClick={toggleLevel} css={css`
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 0 10px;
+                    font-size: 14px;
+                    width: 50px;
+                `}>
+                    <img src="./assets/luna.svg" id="level" css={css`
+                        height: 45%;
+                        display: block;
+                    `}/>
+                    {level[0].toUpperCase() + level.slice(1)}
+                </div>
+            </header>
+            {/* <div css={css`
                 display: flex;
                 flex-direction: column;
                 gap: 10px 0;
@@ -286,14 +315,17 @@ const App = () => {
                         else setClan(Math.min(4, amount));
                     }}
                 />
-            </div>
+            </div> */}
+            <div id="wrapper" css={css`
+                width: 90%;
+                flex-grow: 1;
+                overflow-y: auto;
+                padding: 20px 0;
+            `}>
                 <table css={css`
-                    width: 90vw;
-                    max-width: 500px;
+                    width: 100%;
                     table-layout: fixed;
-                    margin: 0 auto;
                     border-collapse: collapse;
-                    margin-top: 40px;
                 `}>
                     <thead>
                         <tr css={css`
@@ -341,74 +373,9 @@ const App = () => {
                         }
                     </tbody>
                 </table>
-            </main>
-            <footer css={css`
-                vertical-align: middle;
-                width: 100%;
-                height: 55px;
-                background: ${theme === "light" ? "#e7eaeb" : "#373737"};
-                color: ${theme === "light" ? "black" : "white"};
-                text-align: center;
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                font-weight: bold;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            `}>
-                <button
-                    css={css`
-                        background-color: transparent;
-                        border: 0;
-                        outline: 0;
-                        width: 55px;
-                        cursor: pointer;
-                        padding: 0 5px;
-                    `}
-                    onClick={takeScreenshot}>
-                    <img
-                        id="screenshot"
-                        css={css`
-                            height: 55px;`
-                        }
-                        src={screenshot}
-                        alt="스크린샷 이미지" />
-                </button>
-                <span>
-                    {
-                        `장착 아이템 확률 : ${
-                            Math.round(
-                                calculatedItemData
-                                    .filter((v) => v.isEquipItem)
-                                    .map((v) => v.probability)
-                                    .reduce((cur, acc) => cur + acc) * 1000
-                            ) / 1000
-                        }%`
-                    }
-                </span>
-                <button
-                    css={css`
-                        background-color: transparent;
-                        border: 0;
-                        outline: 0;
-                        width: 90px;
-                        cursor: pointer;
-                        padding: 0 5px;
-                    `}
-                    onClick={toggleLevel}>
-                    <img
-                        css={css`
-                            width: 100%;
-                        `}
-                        src={level === "high" ? high : low}
-                        alt="종류 변경 이미지"/>
-                </button>
-            </footer>
-        </ThemeContext.Provider>
+            </div>
+        </div>
     );
 };
 
-export default App;
+export default Prob;

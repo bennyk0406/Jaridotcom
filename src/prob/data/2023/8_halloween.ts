@@ -1,5 +1,5 @@
 const itemData = {
-    high: [
+    low: [
         {
             "name": "연구시설 경비원 군인",
             "probability": 0.7,
@@ -276,7 +276,7 @@ const itemData = {
             "isEquipItem": false
         }
     ],
-    low: [
+    high: [
         {
             "name": "연구시설 경비원 군인",
             "probability": 3.6,
@@ -516,6 +516,13 @@ const itemData = {
             "name": "마녀의 연마제",
             "probability": 2,
             "isEquipItem": false
+        }
+    ],
+    legend: [
+        {
+            name: "테스트",
+            probability: 100,
+            isEquipItem: true
         }
     ]
 }
